@@ -1,34 +1,22 @@
 class Key {
-  private signature: number;
-
-  constructor() {
-    this.signature = Math.random();
-  }
+  constructor(private signature: number = Math.random()) {}
   public getSignature(): number {
     return this.signature;
   }
 }
 
 class Person {
-  private key: Key;
-  constructor(key: Key) {
-    this.key = new Key();
-  }
+  constructor(private key: Key) {}
   public getKey(): Key {
     return this.key;
   }
 }
 
 class House {
-  door: boolean;
-  key: Key;
-  tenants: Person[];
+  protected door: boolean = false;
+  protected tenants: Person[] = [];
 
-  constructor(key: Key) {
-    this.door = false;
-    this.key = key;
-    this.tenants = [];
-  }
+  constructor(private key: Key) {}
   comeIn = (person: Person): void => {
     if (this.door) {
       this.tenants.push(person);
